@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/data/dummy_data.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/meals.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem(this.category, {super.key});
+  const CategoryGridItem({
+    super.key,
+    required this.category,
+    required this.availableMeals,
+  });
 
   final Category category;
+  final List<Meal>  availableMeals;
 
   @override
   Widget build(BuildContext context) {
-    List<Meal> meals = dummyMeals
+    List<Meal> meals = availableMeals
         .where((element) => element.categories.contains(category.id))
         .toList();
     return InkWell(
